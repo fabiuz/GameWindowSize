@@ -10,7 +10,7 @@ namespace GameWindowSize
     static public class Camera
     {
         static private Vector2 sOrigin = Vector2.Zero;      // Origem do mundo.
-        static private float sWidth = 100;                 // Largura do mundo.
+        static private float sWidth = 100f;                 // Largura do mundo.
         static private float sRatio = -1f;                  // Razão entre a janela da câmera e o pixel.
         static private float sHeight = -1f;
 
@@ -31,7 +31,7 @@ namespace GameWindowSize
 
             if (prim.MaxBound.Y > max.Y)
                 return CameraWindowCollisionStatus.CollideTop;
-            if (prim.MinBound.X < min.Y)
+            if (prim.MinBound.X < min.X)
                 return CameraWindowCollisionStatus.CollideLeft;
             if (prim.MaxBound.X > max.X)
                 return CameraWindowCollisionStatus.CollideRight;
