@@ -142,7 +142,6 @@ namespace GameWindowSize
                 mBall = new SoccerBall(mSoccerPosition, mSoccerBallRadius * 2f);
             }
 
-
             /*
 
             // TODO: Add your update logic here
