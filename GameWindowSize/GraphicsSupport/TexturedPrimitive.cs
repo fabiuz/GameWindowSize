@@ -37,7 +37,7 @@ namespace GameWindowSize
         public void Draw()
         {
             // Define onde e o tamanho da textura a exibir.            
-            Rectangle destRect = Camera.ComputePixelRectangle(mPosition, mSize);
+            Rectangle destRect = Camera.ComputePixelRectangle(mPosition, Size);
 
             Game1.sSpriteBatch.Draw(mImage, destRect, Color.White);
         }

@@ -10,9 +10,9 @@ namespace GameWindowSize
     static public class Camera
     {
         static private Vector2 sOrigin = Vector2.Zero;      // Origem do mundo.
-        static private float sWidth = 200;                 // Largura do mundo.
+        static private float sWidth = 100;                 // Largura do mundo.
         static private float sRatio = -1f;                  // Razão entre a janela da câmera e o pixel.
-        static private float sHeight = 0;
+        static private float sHeight = -1f;
 
         // Suporta colisão com o limite da câmera.
         public enum CameraWindowCollisionStatus
@@ -39,10 +39,7 @@ namespace GameWindowSize
                 return CameraWindowCollisionStatus.CollideBottom;
 
             return CameraWindowCollisionStatus.InsideWindow;
-
         }
-
-
 
         /// Accessors to the camera window bounds
         static public Vector2 CameraWindowLowerLeftPosition
@@ -55,6 +52,7 @@ namespace GameWindowSize
             if(sRatio < 0f)
             {
                 sRatio = (float)Game1.sGraphics.PreferredBackBufferWidth / sWidth;
+                sHeight = sWidth * (float)Game1.sGraphics.PreferredBackBufferHeight / (float)Game1.sGraphics.PreferredBackBufferWidth;
             }
 
             return sRatio;
@@ -64,6 +62,7 @@ namespace GameWindowSize
         {
             sOrigin = origin;
             sWidth = width;
+            cameraWindowToPixelRatio();
         }
 
         static public void ComputePixelPosition(Vector2 cameraPosition, out int x, out int y)
@@ -80,10 +79,6 @@ namespace GameWindowSize
 
         static public Rectangle ComputePixelRectangle(Vector2 position, Vector2 size)
         {
-
-
-#if true
-
             float ratio = cameraWindowToPixelRatio();
 
             // Converte tamanho do espaço da câmera para espaço do pixel.
@@ -99,7 +94,6 @@ namespace GameWindowSize
             x -= width / 2;
 
             return new Rectangle(x, y, width, height);
-#endif
         }
     }
 }

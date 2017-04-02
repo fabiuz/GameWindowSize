@@ -10,9 +10,6 @@ namespace GameWindowSize
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager mGraphics;
-        SpriteBatch mSpriteBatch;
-
         TexturedPrimitive mUWBLogo;
         SoccerBall mBall;
         Vector2 mSoccerPosition = new Vector2(50, 50);
@@ -24,16 +21,9 @@ namespace GameWindowSize
         static public System.Random sRan;                  // Para gerar números randomícos.
 
         // Tamanho da tela preferido.
-        const int kWindowWidth = 1000;
-        const int kWindowHeight = 1000;
+        const int kWindowWidth = 500;
+        const int kWindowHeight = 500;
 
-        const int kNumObjects = 4;
-
-        // Trabalha com a classe TexturedPrimitive.
-        TexturedPrimitive[] mGraphicsObjects;   // Arranjo de objetos.
-        int mCurrentIndex = 0;
-
-        
         public Game1()
         {
             //mGraphics = new GraphicsDeviceManager(this);            
@@ -73,41 +63,8 @@ namespace GameWindowSize
             //Game1.sContent = this.Content;
 
             // Define os limites da Camera.
-            Camera.SetCameraWindow(new Vector2(10f, 20f), 100f);
+            Camera.SetCameraWindow(new Vector2(0f,0f), 100f);
            
-
-            /* Cria as primitias.
-            mGraphicsObjects = new TexturedPrimitive[kNumObjects];
-            mGraphicsObjects[0] = new TexturedPrimitive("UWB-JPG",
-                new Vector2(15f, 25f),
-                new Vector2(10, 10));
-            mGraphicsObjects[1] = new TexturedPrimitive("UWB-JPG",
-                new Vector2(35f, 60f),
-                new Vector2(35f, 35f));
-            mGraphicsObjects[2] = new TexturedPrimitive("UWB-PNG",
-                new Vector2(105f, 25f),
-                new Vector2(10f, 10f));
-            mGraphicsObjects[3] = new TexturedPrimitive("UWB-PNG",
-                new Vector2(90f, 60f),
-                new Vector2(35f, 35f));
-                */
-
-
-            /**
-            mGraphicsObjects[0] = new TexturedPrimitive("UWB-JPG",
-                new Vector2(15f, 25f),
-                new Vector2(10, 10));
-            mGraphicsObjects[1] = new TexturedPrimitive("UWB-JPG",
-                new Vector2(35f, 60f),
-                new Vector2(50f, 50f));
-            mGraphicsObjects[2] = new TexturedPrimitive("UWB-PNG",
-                new Vector2(105f, 25f),
-                new Vector2(10f, 10f));
-            mGraphicsObjects[3] = new TexturedPrimitive("UWB-PNG",
-                new Vector2(90f, 60f),
-                new Vector2(35f, 35f));
-    */
-
             mUWBLogo = new TexturedPrimitive("UWB-PNG", new Vector2(30, 30), new Vector2(20, 20));
             mBall = new SoccerBall(mSoccerPosition, mSoccerBallRadius * 2f);
         }
@@ -141,38 +98,7 @@ namespace GameWindowSize
             {
                 mBall = new SoccerBall(mSoccerPosition, mSoccerBallRadius * 2f);
             }
-
-            /*
-
-            // TODO: Add your update logic here
-            if(InputWrapper.Buttons.A == ButtonState.Pressed)
-            {
-                if (!mGraphics.IsFullScreen)
-                {
-                    mGraphics.IsFullScreen = true;
-                    mGraphics.ApplyChanges();
-                }
-            }
-
-            // "B" retorna ao modo enjanelado.
-            if(InputWrapper.Buttons.B == ButtonState.Pressed)
-            {
-                if (mGraphics.IsFullScreen)
-                {
-                    mGraphics.IsFullScreen = false;
-                    mGraphics.ApplyChanges();
-                }
-            }
-
-            // Botão "X" para selecionar o próximo objeto com que trabalhar.
-            if(InputWrapper.Buttons.X == ButtonState.Pressed)
-            {
-                mCurrentIndex = (mCurrentIndex + 1) % kNumObjects;
-            }
-
-            // Atualia o objeto de trabalho atual com os sticks thubms.
-            mGraphicsObjects[mCurrentIndex].Update(InputWrapper.ThumbSticks.Left, InputWrapper.ThumbSticks.Right);
-            */
+            
 
             base.Update(gameTime);
         }
@@ -186,14 +112,7 @@ namespace GameWindowSize
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             Game1.sSpriteBatch.Begin();     // Inicializa o suporte do desenho.
-
-            // Faça um loop e desenha cada primitiva.
-            /**
-            foreach(TexturedPrimitive p in mGraphicsObjects)
-            {
-                p.Draw();
-            }
-    */
+            
 
             mUWBLogo.Draw();
             mBall.Draw();
@@ -204,16 +123,8 @@ namespace GameWindowSize
                 mUWBLogo.Position.ToString(), Color.White);
             FontSupport.PrintStatusAt(mBall.Position, "Radius " + mBall.Radius, Color.Red);
 
-
-            // Imprimi a mensagem de texto para ecoar status.
-            /**
-            FontSupport.PrintStatus("Selected objet is: " + mCurrentIndex + " Location= " +
-                mGraphicsObjects[mCurrentIndex].Position, null);
-
-            FontSupport.PrintStatusAt(mGraphicsObjects[mCurrentIndex].Position, "Selected", Color.Red);
-    **/
-
             Game1.sSpriteBatch.End();
+
 
             base.Draw(gameTime);
         }
