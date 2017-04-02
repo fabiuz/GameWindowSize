@@ -61,11 +61,13 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BasketBall.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GraphicsSupport\Camera.cs" />
     <Compile Include="GraphicsSupport\FontSupport.cs" />
     <Compile Include="GraphicsSupport\TexturedPrimitive.cs" />
     <Compile Include="Input\InputWrapper.cs" />
+    <Compile Include="MyGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoccerBall.cs" />

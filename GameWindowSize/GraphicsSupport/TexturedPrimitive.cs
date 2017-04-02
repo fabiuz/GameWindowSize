@@ -28,10 +28,17 @@ namespace GameWindowSize
             mSize = size;
         }
 
-        public void Update(Vector2 deltaTranslate, Vector2 deltaScale)
+        public TexturedPrimitive(String imageName)
+        {
+            mImage = Game1.sContent.Load<Texture2D>(imageName);
+            mPosition = Vector2.Zero;
+            mSize = Vector2.UnitX;
+        }
+
+        public void Update(Vector2 deltaTranslate )
         {
             mPosition += deltaTranslate;
-            mSize += deltaScale;
+            //mSize += deltaScale;
         }
 
         public void Draw()
@@ -40,6 +47,13 @@ namespace GameWindowSize
             Rectangle destRect = Camera.ComputePixelRectangle(mPosition, Size);
 
             Game1.sSpriteBatch.Draw(mImage, destRect, Color.White);
+        }
+
+        public bool PrimitivesTouches(TexturedPrimitive otherPrim)
+        {
+            Vector2 v = mPosition - otherPrim.Position;
+            float dist = v.Length();
+            return (dist < ((mSize.X / 2f) + (otherPrim.mSize.X / 2f)));
         }
     }
 }

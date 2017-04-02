@@ -23,6 +23,8 @@ namespace GameWindowSize
         // Tamanho da tela preferido.
         const int kWindowWidth = 500;
         const int kWindowHeight = 500;
+        
+        MyGame mTheGame;
 
         public Game1()
         {
@@ -34,6 +36,7 @@ namespace GameWindowSize
             Game1.sGraphics.PreferredBackBufferHeight = kWindowHeight;
 
             Game1.sRan = new System.Random();
+
         }
 
         /// <summary>
@@ -67,6 +70,8 @@ namespace GameWindowSize
            
             mUWBLogo = new TexturedPrimitive("UWB-PNG", new Vector2(30, 30), new Vector2(20, 20));
             mBall = new SoccerBall(mSoccerPosition, mSoccerBallRadius * 2f);
+
+            mTheGame = new MyGame();
         }
 
         /// <summary>
@@ -88,17 +93,19 @@ namespace GameWindowSize
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            mUWBLogo.Update(InputWrapper.ThumbSticks.Left, Vector2.Zero);
+            //mUWBLogo.Update(InputWrapper.ThumbSticks.Left, Vector2.Zero);
 
 
-            mBall.Update();
-            mBall.Update(Vector2.Zero, InputWrapper.ThumbSticks.Right);
+            //mBall.Update();
+            //mBall.Update(Vector2.Zero, InputWrapper.ThumbSticks.Right);
+
+            mTheGame.UpdateGame(gameTime);
 
             if(InputWrapper.Buttons.A == ButtonState.Pressed)
             {
-                mBall = new SoccerBall(mSoccerPosition, mSoccerBallRadius * 2f);
+                //mBall = new SoccerBall(mSoccerPosition, mSoccerBallRadius * 2f);
+                mTheGame = new MyGame();
             }
-            
 
             base.Update(gameTime);
         }
@@ -112,16 +119,17 @@ namespace GameWindowSize
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             Game1.sSpriteBatch.Begin();     // Inicializa o suporte do desenho.
-            
 
-            mUWBLogo.Draw();
-            mBall.Draw();
+            mTheGame.DrawGame();
+
+            //mUWBLogo.Draw();
+            //mBall.Draw();
 
             // Imprimi a mensagem de texto para ecoar o status.
-            FontSupport.PrintStatus("Ball Position: " + mBall.Position, null);
-            FontSupport.PrintStatusAt(mUWBLogo.Position,
-                mUWBLogo.Position.ToString(), Color.White);
-            FontSupport.PrintStatusAt(mBall.Position, "Radius " + mBall.Radius, Color.Red);
+            //FontSupport.PrintStatus("Ball Position: " + mBall.Position, null);
+            //FontSupport.PrintStatusAt(mUWBLogo.Position,
+               // mUWBLogo.Position.ToString(), Color.White);
+            //FontSupport.PrintStatusAt(mBall.Position, "Radius " + mBall.Radius, Color.Red);
 
             Game1.sSpriteBatch.End();
 

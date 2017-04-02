@@ -95,5 +95,23 @@ namespace GameWindowSize
 
             return new Rectangle(x, y, width, height);
         }
+
+        /// <summary>
+        /// Computes a random position inside the current camera window
+        /// </summary>
+        /// <returns></returns>
+        static public Vector2 RandomPosition()
+        {
+            float rangeX = 0.8f * sWidth;
+            float offsetX = 0.1f * sWidth;
+            float rangeY = 0.8f * sHeight;
+            float offsetY = 0.1f * sHeight;
+
+            float x = (float)(Game1.sRan.NextDouble()) * rangeX + offsetX + sOrigin.X;
+            float y = (float)(Game1.sRan.NextDouble()) * rangeY + offsetY + sOrigin.Y;
+
+            return new Vector2(x, y);
+        }
+
     }
 }
